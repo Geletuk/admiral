@@ -22,8 +22,6 @@ public class admController {
     /*Попадаем сюда на старте приложения */
     @RequestMapping(value = "/")
     public ModelAndView login() {
-    	System.out.println("test");
-    	System.out.println(1);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("userJSP", new User());
         modelAndView.setViewName("NewJsp");
@@ -49,7 +47,7 @@ public class admController {
     }
 	@RequestMapping(value = "newJson", method = RequestMethod.GET)
 	public @ResponseBody String newJson(@RequestParam(value = "json", required = false) String json){
-		String JSON=null;
+		String JSON="9_0-St_9_0!9_1-Asmin_9_1!10_0-St_10_0";
 		System.out.println("получил json"+json);
 	
 		System.out.println("отдалл json"+JSON);

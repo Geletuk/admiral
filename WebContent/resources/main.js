@@ -48,7 +48,7 @@ chip_pictures[13] = "resources/tk.jpg";
 chip_pictures[14] = "resources/torpeda.jpg";
 chip_pictures[15] = "resources/tr.jpg";
 chip_pictures[16] = "resources/vmb.jpg";
-var chip_amount = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var chip_amount = [2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function createChipContainer() {		
 	for (i = 0; i < chip_pictures.length; i++) {
@@ -64,7 +64,7 @@ function createChipContainer() {
 		
 		for (j = 0; j < chip_amount[i]; j++) {
 			var div_elem_img = div_col4.appendChild(document.createElement('img'));		
-			div_elem_img.setAttribute("id", chip_img_id + 'i');
+			div_elem_img.setAttribute("id", chip_img_id + j);
 			div_elem_img.setAttribute("src", chip_pictures[i]);	
 			div_elem_img.setAttribute("height", "20");
 			div_elem_img.setAttribute("width", "40");
@@ -146,18 +146,23 @@ function checkStart() {
 function object_start(cell_id_obj, img_id_obj) {
   this.cell_id_obj = cell_id_obj;
   this.img_id_obj = img_id_obj;
+ 
 }
 
 	$('#play_but').click(function(){
+		 var json;
 		$('td[id*=start]').each(function(index){
+			
 			if ( $( this ).is(':parent') ) { 	
 				var cell_id_obj = $(this).attr('id');
 				var img_id_obj = $(this).children().attr('id');
-				mjson (cell_id_obj + ',' +img_id_obj);
+			json=json + '!'+cell_id_obj + '-' +img_id_obj;
 				 
 				 
-			}			   
+			}			
+			
 	    });  
+		mjson (json);
 });
 	
 }); //Конец ready
