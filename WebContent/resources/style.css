@@ -21,6 +21,6 @@ div[id*=chip_div_]{
  .mt-50 {
 	margin-top: 50px; 
  }	 
-   
-   
-
+ ul { 
+ list-style-type:none;
+ }

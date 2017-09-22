@@ -56,8 +56,7 @@ function createChipContainer() {
 		chip_img_id = "chip_img_" + chip_names[i];
 		var elem = document.getElementById("chip-container");
 		var	div_row = elem.appendChild(document.createElement('div'));
-		div_row.setAttribute( "class", "row" );
-		
+		div_row.setAttribute( "class", "row" );		
 		var div_col4 = div_row.appendChild(document.createElement('div'));
 		div_col4.setAttribute("class", "col-md-4");
 		div_col4.setAttribute("id", chip_div_id);  

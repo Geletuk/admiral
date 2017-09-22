@@ -20,7 +20,7 @@
 <br/>
 test regina
 <div class="container">
-  <div class="row">
+  <div class="row" id="row_container">
     <div class="col-md-1"></div>
           
     <div class="col-md-8">
