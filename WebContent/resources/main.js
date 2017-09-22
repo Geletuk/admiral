@@ -4,7 +4,8 @@ var chip_div_id = '';
 var chip_img_id = '';
 var col = $('.p_text');
  function createTable() {	
-    var tbl = document.createElement("Table");	
+    var tbl = document.createElement("Table");
+    tbl.setAttribute( "id", "tbl" );
 	var elem = document.getElementById("main_tbl");	
 	elem.appendChild(tbl);	
 	for(j = 0; j < 14; j++){
@@ -28,6 +29,10 @@ var col = $('.p_text');
 		}
 	}
 }
+ function removeTable () {
+	 var element = document.getElementById("tbl");
+	 element.parentNode.removeChild(element);
+ }
 var chip_names = ["Str", "Asmin", "Aircraft", "AtomBomb", "Avia", "Br", "Kraser", "Krpl", "Lincor", "Mine", "R", "Sm", "Sugmarine", "Tk", 
 "Torpeda", "Tr", "VMB"];
 var chip_pictures = new Array ();
@@ -48,7 +53,7 @@ chip_pictures[13] = "resources/Tk.jpg";
 chip_pictures[14] = "resources/Torpeda.jpg";
 chip_pictures[15] = "resources/Tr.jpg";
 chip_pictures[16] = "resources/VMB.jpg";
-var chip_amount = [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+var chip_amount = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function createChipContainer() {		
 	for (i = 0; i < chip_pictures.length; i++) {

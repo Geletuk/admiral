@@ -1,6 +1,6 @@
  function answerJson(){
 	 var answer_result=[];
-		var id_list="json_9!1!Asmin_10!2!St"		
+		var id_list="json_9!1!3_10!2!5"		
 		var id_list_arr1 = id_list.split("_");
 		for (i = 0; i < id_list_arr1.length; i++) {
 			id_list_arr2= id_list_arr1[i].split("!");
@@ -10,22 +10,21 @@
 		return answer_result;
 	}
  
- /*function chipArrange(answerJson){
+ function chipArrange(answerJson){
 	 for (i = 1; i < answerJson.length; i++) {
 		 var trow = answerJson[i][0];
 		 var ttd = answerJson[i][1];
 		 var img_name = answerJson[i][2];
-		 alert(trow);
-		 alert(ttd);
-		 alert(img_name);
-		 var cell_id = "cell_" + trow + "_" + ttd;
+		
+		var cell_id = document.getElementById('tbl').rows[trow].cells[ttd];
+		 
 		 var div_elem_img = cell_id.appendChild(document.createElement('img'));		
 			div_elem_img.setAttribute("id", "img" + trow + "_" +ttd);
-			div_elem_img.setAttribute("src", "resources/" + img_name + ".jpg");	
+			div_elem_img.setAttribute("src", chip_pictures[i]);	
 			div_elem_img.setAttribute("height", "20");
 			div_elem_img.setAttribute("width", "40");
 	 }
- }*/
+ }
  
  function displayRulesBlock(){
 	 document.getElementById("chip-container").style.display = "none";	
@@ -48,10 +47,11 @@ function mjson(json){
 			type : "GET",
 			success : function(JSON) {
 				alert("!!!!");
+				removeTable ();
+				createTable();	
 				var aj=answerJson();
-				//chipArrange(aj);
-				displayRulesBlock();
-				
+				chipArrange(aj);
+				displayRulesBlock();							
 			}
 		});	
     }
