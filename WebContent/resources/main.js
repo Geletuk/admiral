@@ -153,7 +153,7 @@ function object_start(cell_id_obj, img_id_obj) {
 }
 
 	$('#play_but').click(function(){
-		 var json;
+		 var json='';
 		$('td[id*=start]').each(function(index){
 			
 			if ( $( this ).is(':parent') ) { 	
