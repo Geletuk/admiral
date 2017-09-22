@@ -48,7 +48,7 @@ chip_pictures[13] = "resources/tk.jpg";
 chip_pictures[14] = "resources/torpeda.jpg";
 chip_pictures[15] = "resources/tr.jpg";
 chip_pictures[16] = "resources/vmb.jpg";
-var chip_amount = [2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var chip_amount = [2, 1, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function createChipContainer() {		
 	for (i = 0; i < chip_pictures.length; i++) {
@@ -95,22 +95,25 @@ $('img[id*=chip_img]').draggable({
 // Ячейки
 $('td[id*=start]').droppable({
 		accept: 'img[id*=chip_img]',
-		activeClass: 'highlight',
+		activeClass: 'highlight',		
 		drop: function(event, ui) {
 			var chip = $(ui.draggable);
 			var cell = $(this).attr('id');
 			var chip_id = $(chip).parent().attr('id');
-			var a = $('#' + chip_id + '+ div > p').text();			
-			var a1 = parseInt(a)-1;
-			if (a1 >= 0){
-				$('#' + chip_id + '+ div > p').text(a1);
-			}
-			chip.fadeOut(200, function(){
-			$(this).appendTo('#' + cell).fadeIn();	
-			checkStart();
-			});
-			
-			
+		    if($(this).has('.ui-draggable').length) {
+		        $(this).droppable('disable');
+		    }
+		    else {
+				chip.fadeOut(200, function(){
+				$(this).appendTo('#' + cell).fadeIn();	
+				var a = $('#' + chip_id + '+ div > p').text();			
+				var a1 = parseInt(a)-1;
+				if (a1 >= 0){
+					$('#' + chip_id + '+ div > p').text(a1);
+				}
+				checkStart();			
+				});
+		    }			
 		}
 });
 // Колонка с фишками
@@ -164,6 +167,7 @@ function object_start(cell_id_obj, img_id_obj) {
 	    });  
 		mjson (json);
 });
+
 	
 }); //Конец ready
 

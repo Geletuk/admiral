@@ -6,7 +6,8 @@
 			data : data,
 			type : "GET",
 			success : function(JSON) {
-				alert("!!!"+JSON);
+				alert("!!!!");
+				//aswerJson(JSON);
 			}
 		});	
 
