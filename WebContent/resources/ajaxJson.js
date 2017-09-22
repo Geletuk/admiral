@@ -6,9 +6,27 @@
 			id_list_arr2= id_list_arr1[i].split("!");
 			answer_result.push(id_list_arr2);
 		}
-		alert(answer_result[1]);
+		
 		return answer_result;
 	}
+ 
+ /*function chipArrange(answerJson){
+	 for (i = 1; i < answerJson.length; i++) {
+		 var trow = answerJson[i][0];
+		 var ttd = answerJson[i][1];
+		 var img_name = answerJson[i][2];
+		 alert(trow);
+		 alert(ttd);
+		 alert(img_name);
+		 var cell_id = "cell_" + trow + "_" + ttd;
+		 var div_elem_img = cell_id.appendChild(document.createElement('img'));		
+			div_elem_img.setAttribute("id", "img" + trow + "_" +ttd);
+			div_elem_img.setAttribute("src", "resources/" + img_name + ".jpg");	
+			div_elem_img.setAttribute("height", "20");
+			div_elem_img.setAttribute("width", "40");
+	 }
+ }*/
+ 
  function displayRulesBlock(){
 	 document.getElementById("chip-container").style.display = "none";	
 	 document.getElementById("play_but").style.display = "none";
@@ -21,6 +39,7 @@
 		div_row.setAttribute( "class", "row" );
 		div_row.innerHTML = "<ul id='rules_list' style='list-style-type:none'><li>2Л</li><li>3Кр</li><li>А</li><li>2Эр+С</li><li>2Кр=Р+2Эс</li><li>Л</li><li>2Р</li><li>3Эс</li><li>2эС=3Ст</li><li>Кр</li><li>2Ст+Крпл</li><li>Р</li><li>2Ст</li><li>Эс</li><li>Ст+Крпл</li><li>3Тк</li><li>Ст</li><li>Крпл</li><li>2Тк</li><li>3Тр</li><li>3Пл</li><li>Тк</li><li>2Тр</li><li>2Пл</li><li>Тр</li><li>Пл</li></ul>";
  }
+ 
 function mjson(json){
 		var data ="json="+json;
 		$.ajax({
@@ -29,8 +48,10 @@ function mjson(json){
 			type : "GET",
 			success : function(JSON) {
 				alert("!!!!");
-				answerJson();
+				var aj=answerJson();
+				//chipArrange(aj);
 				displayRulesBlock();
+				
 			}
 		});	
     }
