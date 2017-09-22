@@ -47,7 +47,7 @@ public class admController {
     }
 	@RequestMapping(value = "newJson", method = RequestMethod.GET)
 	public @ResponseBody String newJson(@RequestParam(value = "json", required = false) String json){
-		String JSON="9_0-St_9_0!9_1-Asmin_9_1!10_0-St_10_0";
+		String JSON="9!1!Asmin_10!2!St";
 		System.out.println("получил json"+json);
 	
 		System.out.println("отдалл json"+JSON);
