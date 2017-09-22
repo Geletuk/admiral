@@ -17,7 +17,7 @@ import com.admiral.User;
 //@Scope("session")
 //@RequestMapping({"/"})
 public class admController {
- 
+	
     /*First method on start application*/
     /*Попадаем сюда на старте приложения */
     @RequestMapping(value = "/")
