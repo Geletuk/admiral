@@ -48,7 +48,7 @@ chip_pictures[13] = "resources/tk.jpg";
 chip_pictures[14] = "resources/torpeda.jpg";
 chip_pictures[15] = "resources/tr.jpg";
 chip_pictures[16] = "resources/vmb.jpg";
-var chip_amount = [2, 1, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var chip_amount = [2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function createChipContainer() {		
 	for (i = 0; i < chip_pictures.length; i++) {
@@ -170,4 +170,5 @@ function object_start(cell_id_obj, img_id_obj) {
 
 	
 }); //Конец ready
+
 
