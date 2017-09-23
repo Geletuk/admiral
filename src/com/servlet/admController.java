@@ -60,10 +60,10 @@ public class admController {
 	}
 	
 	private String respons(fiska[][] pol2) {
-		String respon = " "; 
+		String respon = "json"; 
 		for (int i=0;i<pol2.length;i++){
 			for(int j=0;j<pol2[i].length;j++){
-				if (pol[i][j]!=null)respon=respon+i+"!"+j+"!"+pol[i][j].getShip()+"!";
+				if (pol[i][j]!=null)respon=respon+"_"+i+"!"+j+"!"+pol[i][j].getShip();
 			}
 		}
 
@@ -77,7 +77,7 @@ public class admController {
 			buf=buf.replaceAll("_start-chip_img","");
 			buf=buf.substring(0, buf.length()-1);
 			String[]t=buf.split("_");
-			pol[Integer.parseInt(t[0])][Integer.parseInt(t[1])]=new fiska(t[2],Igrok.getName(),0,false);
+			pol[(Math.abs((Integer.parseInt(t[0]))-13))][Math.abs(((Integer.parseInt(t[1]))-13))]=new fiska(t[2],Igrok.getName(),0,false);
 			
 		}
 		
