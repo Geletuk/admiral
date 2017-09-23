@@ -23,6 +23,8 @@
 			div_elem_img.setAttribute("src", chip_pictures[i]);	
 			div_elem_img.setAttribute("height", "20");
 			div_elem_img.setAttribute("width", "40");
+			div_elem_img.setAttribute("data-toggle", "tooltip");
+			div_elem_img.setAttribute("title", chip_names[i]);
 	 }
  }
  
@@ -38,7 +40,9 @@
 		div_row.setAttribute( "class", "row" );
 		div_row.innerHTML = "<ul id='rules_list' style='list-style-type:none'><li>2Л</li><li>3Кр</li><li>А</li><li>2Эр+С</li><li>2Кр=Р+2Эс</li><li>Л</li><li>2Р</li><li>3Эс</li><li>2эС=3Ст</li><li>Кр</li><li>2Ст+Крпл</li><li>Р</li><li>2Ст</li><li>Эс</li><li>Ст+Крпл</li><li>3Тк</li><li>Ст</li><li>Крпл</li><li>2Тк</li><li>3Тр</li><li>3Пл</li><li>Тк</li><li>2Тр</li><li>2Пл</li><li>Тр</li><li>Пл</li></ul>";
  }
- 
+ function chipTooltip(){
+		$('[data-toggle="tooltip"]').tooltip();   
+	}
 function mjson(json){
 		var data ="json="+json;
 		$.ajax({
@@ -51,7 +55,8 @@ function mjson(json){
 				createTable();	
 				var aj=answerJson();
 				chipArrange(aj);
-				displayRulesBlock();							
+				displayRulesBlock();
+				chipTooltip();
 			}
 		});	
     }

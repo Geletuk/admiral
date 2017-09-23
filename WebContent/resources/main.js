@@ -163,11 +163,8 @@ function object_start(cell_id_obj, img_id_obj) {
 			if ( $( this ).is(':parent') ) { 	
 				var cell_id_obj = $(this).attr('id');
 				var img_id_obj = $(this).children().attr('id');
-			json=json + '!'+cell_id_obj + '-' +img_id_obj;
-				 
-				 
-			}			
-			
+			json=json + '!'+cell_id_obj + '-' +img_id_obj;				 				 
+			}						
 	    });  
 		mjson (json);
 });
