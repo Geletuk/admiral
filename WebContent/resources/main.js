@@ -114,10 +114,11 @@ $('td[id*=start]').droppable({
 				var a1 = parseInt(a)-1;
 				if (a1 >= 0){
 					$('#' + chip_id + '+ div > p').text(a1);
-				}
+				}				
 				checkStart();			
 				});
-		    }			
+		    }
+		    $(this).droppable('enable');
 		}
 });
 // Колонка с фишками
