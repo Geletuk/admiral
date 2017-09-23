@@ -20,11 +20,11 @@
 		 
 		 var div_elem_img = cell_id.appendChild(document.createElement('img'));		
 			div_elem_img.setAttribute("id", "img" + trow + "_" +ttd);
-			div_elem_img.setAttribute("src", chip_pictures[i]);	
+			div_elem_img.setAttribute("src", chip_pictures[img_name]);	
 			div_elem_img.setAttribute("height", "20");
 			div_elem_img.setAttribute("width", "40");
 			div_elem_img.setAttribute("data-toggle", "tooltip");
-			div_elem_img.setAttribute("title", chip_names[i]);
+			div_elem_img.setAttribute("title", chip_names[img_name]);
 	 }
  }
  
