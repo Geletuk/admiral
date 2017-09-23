@@ -33,8 +33,7 @@ var col = $('.p_text');
 	 var element = document.getElementById("tbl");
 	 element.parentNode.removeChild(element);
  }
-var chip_names = ["Str", "Asmin", "Aircraft", "AtomBomb", "Avia", "Br", "Kraser", "Krpl", "Lincor", "Mine", "R", "Sm", "Sugmarine", "Tk", 
-"Torpeda", "Tr", "VMB"];
+var chip_names = ["VMB","Sugmarine","Tr","Tk","Krpl","Str","Asmin","R","Kraser","Lincor","Avia","Br","Torpeda","Mine","Sm","Aircraft","AtomBomb",]
 var chip_pictures = new Array ();
 chip_pictures[0] ="resources/VMB.jpg" ;
 chip_pictures[1] ="resources/Sugmarine.jpg" ;
@@ -53,8 +52,8 @@ chip_pictures[13] ="resources/Mine.jpg" ;
 chip_pictures[14] ="resources/Sm.jpg" ;
 chip_pictures[15] ="resources/Aircraft.jpg" ;
 chip_pictures[16] ="resources/AtomBomb.jpg" ;
-var chip_amount = [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+//var chip_amount = [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//тест
+var chip_amount = [2, 6, 6, 6, 1, 6, 6, 2, 6, 2, 1, 1, 6, 6, 1, 1, 1];//полный контеннт
 function createChipContainer() {		
 	for (i = 0; i < chip_pictures.length; i++) {
 		chip_div_id = "chip_div_" + chip_names[i];

@@ -74,10 +74,10 @@ public class admController {
 		String[]token=json.split("/");
 		for (String buf:token){
 			buf=buf.replaceAll("cell_","");
-			buf=buf.replaceAll("_start-chip_img","");
-			buf=buf.substring(0, buf.length()-1);
+			buf=buf.replaceAll("_start","");
+		//	buf=buf.substring(0, buf.length()-1);
 			String[]t=buf.split("_");
-			pol[(Math.abs((Integer.parseInt(t[0]))-13))][Math.abs(((Integer.parseInt(t[1]))-13))]=new fiska(t[2],Igrok.getName(),0,false);
+			pol[(Math.abs((Integer.parseInt(t[0]))-13))][Math.abs(((Integer.parseInt(t[1]))-13))]=new fiska(t[2],Igrok.getName(),Integer.parseInt(t[2]),false);
 			
 		}
 		
