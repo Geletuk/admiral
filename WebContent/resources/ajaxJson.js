@@ -1,6 +1,6 @@
- function answerJson(){
+ function answerJson(id_list){
 	 var answer_result=[];
-		var id_list="json_9!1!3_10!2!5"		
+		var id_list="json_9!1!3_10!2!5_13!13!1"		
 		var id_list_arr1 = id_list.split("_");
 		for (i = 0; i < id_list_arr1.length; i++) {
 			id_list_arr2= id_list_arr1[i].split("!");
@@ -53,7 +53,7 @@ function mjson(json){
 				alert("!!!!");
 				removeTable ();
 				createTable();	
-				var aj=answerJson();
+				var aj=answerJson(JSON);
 				chipArrange(aj);
 				displayRulesBlock();
 				chipTooltip();

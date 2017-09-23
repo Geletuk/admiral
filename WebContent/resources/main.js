@@ -53,7 +53,7 @@ chip_pictures[13] = "resources/Tk.jpg";
 chip_pictures[14] = "resources/Torpeda.jpg";
 chip_pictures[15] = "resources/Tr.jpg";
 chip_pictures[16] = "resources/VMB.jpg";
-var chip_amount = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var chip_amount = [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function createChipContainer() {		
 	for (i = 0; i < chip_pictures.length; i++) {
@@ -163,7 +163,7 @@ function object_start(cell_id_obj, img_id_obj) {
 			if ( $( this ).is(':parent') ) { 	
 				var cell_id_obj = $(this).attr('id');
 				var img_id_obj = $(this).children().attr('id');
-			json=json + '!'+cell_id_obj + '-' +img_id_obj;				 				 
+			json=json +cell_id_obj + '-' +img_id_obj+ '/';				 				 
 			}						
 	    });  
 		mjson (json);

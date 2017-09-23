@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.admiral.User;
+import com.admiral.fiska;
+
 
  
  
@@ -17,15 +19,16 @@ import com.admiral.User;
 //@Scope("session")
 //@RequestMapping({"/"})
 public class admController {
-	
+	fiska[][] pol=new fiska[14][14];
+	User Igrok=new User();
     /*First method on start application*/
     /*Попадаем сюда на старте приложения */
     @RequestMapping(value = "/")
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("userJSP", new User());
+        modelAndView.addObject("userJSP", Igrok);
         modelAndView.setViewName("NewJsp");
-    	//model.addAttribute("userJSP", new User());
+    
         return modelAndView;
     }
  
@@ -36,7 +39,7 @@ public class admController {
     @RequestMapping(value = "/check-user")
     public ModelAndView checkUser(@ModelAttribute("userJSP") User user) {
         ModelAndView modelAndView = new ModelAndView();
- 
+        Igrok=user;
         //имя представления, куда нужно будет перейти
         modelAndView.setViewName("secondPage");
  
@@ -49,10 +52,44 @@ public class admController {
 	public @ResponseBody String newJson(@RequestParam(value = "json", required = false) String json){
 		String JSON="9!1!Asmin_10!2!St";
 		System.out.println("получил json"+json);
+		parseJson(json);
+		System.out.println("отдалл json   "+respons(pol));
+	//	System.out.println("отдалл json"+JSON);
+		printArray(pol);
+	return respons(pol);
+	}
 	
-		System.out.println("отдалл json"+JSON);
-		System.out.println();
-	return JSON;
+	private String respons(fiska[][] pol2) {
+		String respon = " "; 
+		for (int i=0;i<pol2.length;i++){
+			for(int j=0;j<pol2[i].length;j++){
+				if (pol[i][j]!=null)respon=respon+i+"!"+j+"!"+pol[i][j].getShip()+"!";
+			}
+		}
+
+		return respon;
+	}
+
+	private void parseJson(String json) {
+		String[]token=json.split("/");
+		for (String buf:token){
+			buf=buf.replaceAll("cell_","");
+			buf=buf.replaceAll("_start-chip_img","");
+			buf=buf.substring(0, buf.length()-1);
+			String[]t=buf.split("_");
+			pol[Integer.parseInt(t[0])][Integer.parseInt(t[1])]=new fiska(t[2],Igrok.getName(),0,false);
+			
+		}
+		
+	}
+
+	private static void printArray(fiska[][] mport) {
+		for (int i = 0; i < mport.length; i++) {
+			for (int j = 0; j < mport[i].length; j++) {
+				System.out.print(mport[i][j] + "\t");
+			}
+			System.out.println();
+		}
 	}
 }
 
