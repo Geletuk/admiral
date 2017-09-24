@@ -5,8 +5,7 @@
 		for (i = 0; i < id_list_arr1.length; i++) {
 			id_list_arr2= id_list_arr1[i].split("!");
 			answer_result.push(id_list_arr2);
-		}
-		
+		}		
 		return answer_result;
 	}
  
@@ -14,24 +13,29 @@
 	 for (i = 1; i < answerJson.length; i++) {
 		 var trow = answerJson[i][0];
 		 var ttd = answerJson[i][1];
-		 var img_name = answerJson[i][2];
-		
-		var cell_id = document.getElementById('tbl').rows[trow].cells[ttd];
-		 
-		 var div_elem_img = cell_id.appendChild(document.createElement('img'));		
-			div_elem_img.setAttribute("id", "img" + trow + "_" +ttd);
+		 var img_name = answerJson[i][2];		
+		 var cell_id = document.getElementById('tbl').rows[trow].cells[ttd];	 
+		 var div_elem_img = cell_id.appendChild(document.createElement('img'));
+		 	if (chip_pictures[img_name]== "resources/VMB.jpg"){
+			div_elem_img.setAttribute("id", "img_vmb_" + trow + "_" +ttd);
+		 	}
+		 	else if (chip_pictures[img_name]== "resources/Sm.jpg"){
+				div_elem_img.setAttribute("id", "img_sm_" + trow + "_" +ttd);
+			 	}
+		 	else {
+		 		div_elem_img.setAttribute("id", "img_play_" + trow + "_" +ttd);
+		 	}
 			div_elem_img.setAttribute("src", chip_pictures[img_name]);	
 			div_elem_img.setAttribute("height", "20");
 			div_elem_img.setAttribute("width", "40");
 			div_elem_img.setAttribute("data-toggle", "tooltip");
-			div_elem_img.setAttribute("title", chip_names[img_name]);
+			div_elem_img.setAttribute("title", chip_names[img_name]);	 
 	 }
  }
  
  function displayRulesBlock(){
 	 document.getElementById("chip-container").style.display = "none";	
-	 document.getElementById("play_but").style.display = "none";
-	 
+	 document.getElementById("play_but").style.display = "none";	 
 	 var elem = document.getElementById("row_container");
 		var	div_col = elem.appendChild(document.createElement('div'));
 		div_col.setAttribute( "id", "rules_block" );
@@ -50,13 +54,14 @@ function mjson(json){
 			data : data,
 			type : "GET",
 			success : function(JSON) {
-				alert("!!!!");
+				alert(JSON);
 				removeTable ();
 				createTable();	
 				var aj=answerJson(JSON);
 				chipArrange(aj);
 				displayRulesBlock();
 				chipTooltip();
+				play();	
 			}
 		});	
     }

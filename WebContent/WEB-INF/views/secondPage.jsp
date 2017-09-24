@@ -10,6 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="resources/main.js"></script>
   <script type="text/javascript" src="resources/ajaxJson.js"></script>
+  <script type="text/javascript" src="resources/game.js"></script>
 </head>
 <body>
 Введенное имя: ${userJSP.name};

@@ -25,7 +25,7 @@ var col = $('.p_text');
 			tcell.style.borderTop = "2px solid red";
 			tcell.style.borderLeft = "1px solid black";
 			tcell.style.borderRight = "1px solid black";
-		}
+			}
 		}
 	}
 }
@@ -52,8 +52,10 @@ chip_pictures[13] ="resources/Mine.jpg" ;
 chip_pictures[14] ="resources/Sm.jpg" ;
 chip_pictures[15] ="resources/Aircraft.jpg" ;
 chip_pictures[16] ="resources/AtomBomb.jpg" ;
-//var chip_amount = [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//тест
-var chip_amount = [2, 6, 6, 6, 1, 6, 6, 2, 6, 2, 1, 1, 6, 6, 1, 1, 1];//полный контеннт
+
+var chip_amount = [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//тест
+
+//var chip_amount = [2, 6, 6, 6, 1, 6, 6, 2, 6, 2, 1, 1, 6, 6, 1, 1, 1];//полный контеннт
 function createChipContainer() {		
 	for (i = 0; i < chip_pictures.length; i++) {
 		chip_div_id = "chip_div_" + chip_names[i];
@@ -87,6 +89,7 @@ function createChipContainer() {
 		elem_name.innerHTML = chip_names[i];	
 	}	  
 }
+
 $(document).ready(function() {
 //Эффект перетаскивания
 $('img[id*=chip_img]').draggable({
@@ -150,12 +153,6 @@ function checkStart() {
 		}	 
 	}
 
-function object_start(cell_id_obj, img_id_obj) {
-  this.cell_id_obj = cell_id_obj;
-  this.img_id_obj = img_id_obj;
- 
-}
-
 	$('#play_but').click(function(){
 		 var json='';
 		$('td[id*=start]').each(function(index){
@@ -169,9 +166,9 @@ function object_start(cell_id_obj, img_id_obj) {
 			json=json +cell_id_obj + '_' + img_n + '/';				 				 
 			}						
 	    });  
+		alert(json);
 		mjson (json);
-});
-
+	});
 	
 }); //Конец ready
 
