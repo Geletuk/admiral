@@ -23,7 +23,7 @@
 				div_elem_img.setAttribute("id", "img_sm_" + trow + "_" +ttd);
 			 	}
 		 	else {
-		 		div_elem_img.setAttribute("id", "img_play_" + trow + "_" +ttd);
+		 		div_elem_img.setAttribute("id", "img_play_" + trow + "_" +ttd + "_" +img_name);
 		 	}
 			div_elem_img.setAttribute("src", chip_pictures[img_name]);	
 			div_elem_img.setAttribute("height", "20");

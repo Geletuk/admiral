@@ -1,6 +1,5 @@
 
 function play() {	
-//Эффект перетаскивания
 $('img[id*=img_play]').draggable({
 		revert : 'invalid',
 		helper: 'clone',
@@ -23,19 +22,20 @@ $('img[id*=img_play]').draggable({
 						return true;
 					},
 					activeClass: 'highlight',		
-					drop: function(event, ui) {						
-						
+					drop: function(event, ui) {												
 						var chip = $(ui.draggable);
 						var cell = $(this).attr('id');
 						var chip_id = $(chip).parent().attr('id');
-							chip.fadeOut(200, function(){
-							$(this).appendTo('#' + cell).fadeIn();	
-							//$("#" + cell).attr("id", cell +"f");							
-							$("#" + cell_id_top + ", #" + cell_id_bottom + ", #" + cell_id_right+ ", #" + cell_id_left).removeClass( 'ui-droppable' );
-							$("#" + cell_id_top + ", #" + cell_id_bottom + ", #" + cell_id_right+ ", #" + cell_id_left).droppable('destroy');							
-							}); 
-							chip.draggable('destroy');
-							chip.addClass('disabled').fadeTo(0, 0.5);
+						chip.fadeOut(200, function(){
+						$(this).appendTo('#' + cell).fadeIn();	
+						//$("#" + cell).attr("id", cell +"f");							
+						$("#" + cell_id_top + ", #" + cell_id_bottom + ", #" + cell_id_right+ ", #" + cell_id_left).removeClass( 'ui-droppable' );
+						$("#" + cell_id_top + ", #" + cell_id_bottom + ", #" + cell_id_right+ ", #" + cell_id_left).droppable('destroy');							
+					}); 
+						chip.draggable('destroy');
+						//chip.addClass('disabled').fadeTo(0, 0.5);
+						//sendJson();
+							
 					}				
 			});		
 		}
