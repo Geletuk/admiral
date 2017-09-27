@@ -1,9 +1,6 @@
-
-var cell_id = '';
-var chip_div_id = '';
-var chip_img_id = '';
-var col = $('.p_text');
- function createTable() {	
+// Cell table creating
+ function createTable() {
+	var cell_id = '';
     var tbl = document.createElement("Table");
     tbl.setAttribute( "id", "tbl" );
 	var elem = document.getElementById("main_tbl");	
@@ -29,6 +26,7 @@ var col = $('.p_text');
 		}
 	}
 }
+//Cell table removing
  function removeTable () {
 	 var element = document.getElementById("tbl");
 	 element.parentNode.removeChild(element);
@@ -54,9 +52,12 @@ chip_pictures[15] ="resources/Aircraft.jpg" ;
 chip_pictures[16] ="resources/AtomBomb.jpg" ;
 
 var chip_amount = [1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0];//тест
-
 //var chip_amount = [2, 6, 6, 6, 1, 6, 6, 2, 6, 2, 1, 1, 6, 6, 1, 1, 1];//полный контеннт
-function createChipContainer() {		
+
+// Chip container creating
+function createChipContainer() {
+	var chip_img_id = '';
+	var chip_div_id = '';
 	for (i = 0; i < chip_pictures.length; i++) {
 		chip_div_id = "chip_div_" + chip_names[i];
 		if (chip_pictures[i] == "resources/Torpeda.jpg"){
@@ -96,11 +97,11 @@ function createChipContainer() {
 		var elem_name = div_col5.appendChild(document.createElement('p'));
 		elem_name.innerHTML = chip_names[i];	
 	}	
-	$('img[id*=img_Torpeda]').addClass('disabled').fadeTo(0, 0.5);
-	$('img[id*=img_Aircraft]').addClass('disabled').fadeTo(0, 0.5);
+	$('img[id*=img_Torpeda], img[id*=img_Aircraft]').addClass('disabled').fadeTo(0, 0.5);
 }
 
 $(document).ready(function() {
+	
 //The cells around the ship, where Torpeda and Aircraft are possible to be placed into
 	function cellsAroundShip (id_var) {
 		var cell_id = $(id_var).parent().attr('id');			
@@ -113,16 +114,85 @@ $(document).ready(function() {
 		var cell_id_bottom_l = cell_id_arr1[0]+"_"+(parseInt(cell_id_arr1[1])-1)+"_"+(parseInt(cell_id_arr1[2])-1);
 		var cell_id_top_r = cell_id_arr1[0]+"_"+ (parseInt(cell_id_arr1[1])+1) +"_"+(parseInt(cell_id_arr1[2])+1);
 		var cell_id_bottom_r = cell_id_arr1[0]+"_"+ (parseInt(cell_id_arr1[1])-1) +"_"+(parseInt(cell_id_arr1[2])+1);
-		var cell_arr = [cell_id_top, cell_id_bottom, cell_id_right, cell_id_left, cell_id_top_l, cell_id_bottom_l, cell_id_top_r, cell_id_bottom_r];
+		var cell_arr = ["#" + cell_id_top + "_start", "#" + cell_id_bottom + "_start", "#" + cell_id_right + "_start", "#" + cell_id_left + "_start", "#" + cell_id_top_l + "_start", "#" + cell_id_bottom_l + "_start", "#" + cell_id_top_r + "_start", "#" + cell_id_bottom_r + "_start"];
 		return cell_arr;					
 	}
-//Chips draggable effect
-$('img[id*=chip_img]').draggable({
-		revert : 'invalid',
-		helper: 'clone',
-		cursor : 'move'
-	});
 	
+//Chips draggable effect
+	function draggableEffect (elem_id){
+		$(elem_id).draggable({
+			revert : 'invalid',
+			helper: 'clone',
+			cursor : 'move'
+		});
+	}
+	
+	// Checking that all the chips are placed and it is possible to play
+	function checkStart() {
+	    var flag = true;
+			$('.p_text').each(function(index){					 				 
+				if ( $( this ).text() != '0' ) { 				  
+					flag = false;
+				}			   
+		    });  		
+			if(flag){		
+				$('#play_but').removeClass('disabled'); 
+			}	 
+		}
+	
+	//chip counter
+	function chipCounter (chip){
+		var a = $('#' + chip + '+ div > p').text();			
+		var a1 = parseInt(a)-1;
+		if (a1 >= 0){
+			$('#' + chip + '+ div > p').text(a1);
+		}				
+		checkStart();	
+	}
+
+	//Rules to place Torpeda and Aircraft
+	function torpedaPlacement(torpeda_id, ship_id){
+		$(torpeda_id).draggable({
+			revert : 'invalid',
+			helper: 'clone',
+			cursor : 'move',
+			start: function () {			
+				var f_cell_arr = cellsAroundShip (ship_id);		
+				//Ячейки
+				$.each(f_cell_arr, function(index){					
+				if ($(f_cell_arr[index]).has('.ui-draggable').length) {
+			        $(f_cell_arr[index]).droppable('disable');
+			    }
+				else {					
+				$(f_cell_arr[index]).droppable({				
+						accept: torpeda_id,
+						activeClass: 'highlight',		
+						drop: function(event, ui) {												
+							var chip = $(ui.draggable);
+							var cell = $(this).attr('id');
+							var chip_id = $(chip).parent().attr('id');
+							if($(this).has('.ui-draggable').length) {
+						        $(this).droppable('disable');
+						    }
+						    else {
+							chip.fadeOut(200, function(){
+								$(this).appendTo('#' + cell).fadeIn();																			
+								chipCounter(chip_id);			
+							}); 	
+						}	
+						$(this).droppable('enable');
+					}			
+				});	
+				
+				}//else
+				$(f_cell_arr[index]).droppable('enable');
+			});	 //each 
+			}		
+		});	
+	}
+	
+	draggableEffect('img[id*=chip_img]');
+		
 // Cells droppable
 $('td[id*=start]').droppable({
 		accept: 'img[id*=chip_img]',
@@ -135,109 +205,37 @@ $('td[id*=start]').droppable({
 			
 			//permission to put Torpeda and Aircraft
 			if ( $('#' + img_id).attr('src') == 'resources/Tk.jpg' ) {				
-				$('img[id*=img_Torpeda]').removeClass('disabled').fadeTo(0, 1).draggable({
-					revert : 'invalid',
-					helper: 'clone',
-					cursor : 'move'
-				});				
+				$('img[id*=img_Torpeda]').removeClass('disabled').fadeTo(0, 1);
+				draggableEffect('img[id*=img_Torpeda]');					
 			};
 			if ( $('#' + img_id).attr('src') == 'resources/Avia.jpg' ) {				
-				$('img[id*=img_Aircraft]').removeClass('disabled').fadeTo(0, 1).draggable({
-					revert : 'invalid',
-					helper: 'clone',
-					cursor : 'move'
-				});				
+				$('img[id*=img_Aircraft]').removeClass('disabled').fadeTo(0, 1);
+				draggableEffect('img[id*=img_Aircraft]');
 			};
+			
 			// Checking that a cell has no chips (a cell can accept only one chip)
+			
 		    if($(this).has('.ui-draggable').length) {
 		        $(this).droppable('disable');
 		    }
 		    else {
 				chip.fadeOut(200, function(){
 				$(this).appendTo('#' + cell).fadeIn();	
-				//chip counter
-				var a = $('#' + chip_id + '+ div > p').text();			
-				var a1 = parseInt(a)-1;
-				if (a1 >= 0){
-					$('#' + chip_id + '+ div > p').text(a1);
-				}				
-				checkStart();			
+				
+				chipCounter(chip_id);
 				});
 		    }
+		    
 		    $(this).droppable('enable');
+		    
 		}
 	});
 
 // Rules to place Torpeda
-$('img[id*=pihc_img_Torpeda]').draggable({
-	revert : 'invalid',
-	helper: 'clone',
-	cursor : 'move',
-	start: function () {			
-		var f_cell_arr = cellsAroundShip ('img[id*=chip_img_Tk]');		
-		//Ячейки
-		$("#" + f_cell_arr[0]  + "_start, #" + f_cell_arr[1] + "_start, #" + f_cell_arr[2]+ "_start, #" + f_cell_arr[3] + "_start, #" + f_cell_arr[4] + "_start, #" + f_cell_arr[5] + "_start, #" + f_cell_arr[6] + "_start, #" + f_cell_arr[7] + "_start").droppable({				
-				accept: 'img[id*=pihc_img_Torpeda]',
-				activeClass: 'highlight',		
-				drop: function(event, ui) {												
-					var chip = $(ui.draggable);
-					var cell = $(this).attr('id');
-					var chip_id = $(chip).parent().attr('id');
-					if($(this).has('.ui-draggable').length) {
-				        $(this).droppable('disable');
-				    }
-				    else {
-					chip.fadeOut(200, function(){
-						$(this).appendTo('#' + cell).fadeIn();																			
-					//chip counter
-						var a = $('#' + chip_id + '+ div > p').text();			
-						var a1 = parseInt(a)-1;
-						if (a1 >= 0){
-							$('#' + chip_id + '+ div > p').text(a1);
-						}				
-						checkStart();			
-					}); 	
-				}	
-				$(this).droppable('enable');
-			}			
-		});	
-	}		
-});	
+torpedaPlacement('img[id*=pihc_img_Torpeda]', 'img[id*=chip_img_Tk]');
 //Rules to place Aircraft
-$('img[id*=pihc_img_Aircraft]').draggable({
-	revert : 'invalid',
-	helper: 'clone',
-	cursor : 'move',
-	start: function () {			
-		var f_cell_arr = cellsAroundShip ('img[id*=chip_img_Avia]');		
-		//Ячейки
-		$("#" + f_cell_arr[0]  + "_start, #" + f_cell_arr[1] + "_start, #" + f_cell_arr[2]+ "_start, #" + f_cell_arr[3] + "_start, #" + f_cell_arr[4] + "_start, #" + f_cell_arr[5] + "_start, #" + f_cell_arr[6] + "_start, #" + f_cell_arr[7] + "_start").droppable({				
-				accept: 'img[id*=pihc_img_Aircraft]',
-				activeClass: 'highlight',		
-				drop: function(event, ui) {												
-					var chip = $(ui.draggable);
-					var cell = $(this).attr('id');
-					var chip_id = $(chip).parent().attr('id');
-					if($(this).has('.ui-draggable').length) {
-				        $(this).droppable('disable');
-				    }
-				    else {
-					chip.fadeOut(200, function(){
-						$(this).appendTo('#' + cell).fadeIn();																			
-					//chip counter
-						var a = $('#' + chip_id + '+ div > p').text();			
-						var a1 = parseInt(a)-1;
-						if (a1 >= 0){
-							$('#' + chip_id + '+ div > p').text(a1);
-						}				
-						checkStart();			
-					}); 	
-				}	
-				$(this).droppable('enable');
-			}			
-		});	
-	}		
-});
+torpedaPlacement('img[id*=pihc_img_Aircraft]', 'img[id*=chip_img_Avia]');
+
 // Chip container droppable
 $.each(chip_names,function(index,value){
   $('#chip_div_' + value).droppable({	  
@@ -253,18 +251,7 @@ $.each(chip_names,function(index,value){
 		}	
   	});
 });
-// Checking that all the chips are placed and it is possible to play
-function checkStart() {
-    var flag = true;
-		$('.p_text').each(function(index){					 				 
-			if ( $( this ).text() != '0' ) { 				  
-				flag = false;
-			}			   
-	    });  		
-		if(flag){		
-			$('#play_but').removeClass('disabled'); 
-		}	 
-	}
+
 //Creating json
 	$('#play_but').click(function (){
 		 var json='';

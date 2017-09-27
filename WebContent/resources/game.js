@@ -27,8 +27,7 @@ $('img[id*=img_play]').draggable({
 						var cell = $(this).attr('id');
 						var chip_id = $(chip).parent().attr('id');
 						chip.fadeOut(200, function(){
-						$(this).appendTo('#' + cell).fadeIn();	
-						//$("#" + cell).attr("id", cell +"f");							
+						$(this).appendTo('#' + cell).fadeIn();							
 						$("#" + cell_id_top + ", #" + cell_id_bottom + ", #" + cell_id_right+ ", #" + cell_id_left).removeClass( 'ui-droppable' );
 						$("#" + cell_id_top + ", #" + cell_id_bottom + ", #" + cell_id_right+ ", #" + cell_id_left).droppable('destroy');							
 					}); 
