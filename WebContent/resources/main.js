@@ -160,7 +160,7 @@ $(document).ready(function() {
 		checkStart();	
 	}
 	// Checking that a cell has no chips (a cell can accept only one chip)
-		function cellHasChip (cell, chip, img_id, chip_id) {
+	function cellHasChip (cell, chip, img_id, chip_id) {
 	  if ($("#" + cell).has('.ui-draggable').length) {
 	    	$("#" + cell).droppable('disable');
 	    }
@@ -217,28 +217,25 @@ $('td[id*=start]').droppable({
 			var cell = $(this).attr('id');
 			var chip_id = $(chip).parent().attr('id');
 			var img_id = chip.attr('id');
-			
 			//permission to put Torpeda and Aircraft
-			putTorpeda (img_id);
-
+			//putTorpeda (img_id);
 			// Checking that a cell has no chips (a cell can accept only one chip)
 			cellHasChip (cell, chip, img_id, chip_id);
-			
 		    $("#" + cell).droppable('enable');		    
 		}
 	});
-
-// Rules to place Torpeda
-torpedaPlacement('img[id*=pihc_img_Torpeda]', 'img[id*=chip_img_Tk]');
-//Rules to place Aircraft
-torpedaPlacement('img[id*=pihc_img_Aircraft]', 'img[id*=chip_img_Avia]');
-
 // Chip container droppable
 $.each(chip_names,function(index,value){
   $('#chip_div_' + value).droppable({	  
 		accept: 'img[id*=img_' + value+ ']',
+		activeClass: 'highlight',
 		drop: function(event, ui) {			
 		var chip_back = $(ui.draggable);
+		var cell = $(this).attr('id');
+		var chip_id = $(chip_back).parent().attr('id');
+		var img_id = chip_back.attr('id');
+		cellHasChip (cell, chip_back, img_id, chip_id);
+		$("#" + cell).droppable('enable');	
 		chip_back.fadeOut(200, function(){
 			$(this).appendTo('#chip_div_' + value).fadeIn();
 			var a = $('#chip_div_' + value + '+ div > p').text(); 		
@@ -248,6 +245,10 @@ $.each(chip_names,function(index,value){
 		}	
   	});
 });
+//Rules to place Torpeda
+torpedaPlacement('img[id*=pihc_img_Torpeda]', 'img[id*=chip_img_Tk]');
+//Rules to place Aircraft
+torpedaPlacement('img[id*=pihc_img_Aircraft]', 'img[id*=chip_img_Avia]');
 
 //Creating json
 	$('#play_but').click(function (){
