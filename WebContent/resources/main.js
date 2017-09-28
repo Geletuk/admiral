@@ -240,7 +240,6 @@ $.each(chip_names,function(index,value){
 		accept: 'img[id*=img_' + value+ ']',
 		activeClass: 'highlight',
 		drop: function(event, ui) {			
-<<<<<<< HEAD
 		var chip_back = $(ui.draggable);
 		var cell = $(this).attr('id');
 		var chip_id = $(chip_back).parent().attr('id');
@@ -255,7 +254,7 @@ $.each(chip_names,function(index,value){
 			var a1 = parseInt(a)+1;
 				$('#chip_div_' + value + '+ div > p').text(a1);
 			});		
-=======
+
 			var chip_back = $(ui.draggable);
 			var cell = $(this).attr('id');
 			var chip_id = $(chip_back).parent().attr('id');
@@ -276,7 +275,7 @@ $.each(chip_names,function(index,value){
 					$('#chip_div_' + value + '+ div > p').text(a1);
 				});
 			}
->>>>>>> origin/master
+
 		}	
   	});
 });
