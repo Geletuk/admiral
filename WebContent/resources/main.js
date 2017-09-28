@@ -168,10 +168,10 @@ $(document).ready(function() {
 	    else {
 			chip.fadeOut(200, function(){
 				$("#" + img_id).appendTo('#' + cell).fadeIn();				
-			chipCounter(chip_id);
-				});
-	    	}
-		}
+				chipCounter(chip_id);
+			});
+	    }
+	}
 	//Rules to place Torpeda and Aircraft
 	function torpedaPlacement(torpeda_id, ship_id){
 		$(torpeda_id).draggable({
@@ -187,23 +187,32 @@ $(document).ready(function() {
 			        $(f_cell_arr[index]).droppable('disable');
 			    }*/
 				//else {					
-				$(f_cell_arr[index]).droppable({				
-						accept: torpeda_id,
-						activeClass: 'highlight',		
-						drop: function(event, ui) {												
-							var chip = $(ui.draggable);
-							var cell = $(this).attr('id');
-							var chip_id = $(chip).parent().attr('id');
-							var img_id = chip.attr('id');
-							// Checking that a cell has no chips (a cell can accept only one chip)
-							cellHasChip (cell, chip, img_id, chip_id);							
-							$(this).droppable('enable');
+					$(f_cell_arr[index]).droppable({				
+							accept: torpeda_id,
+							activeClass: 'highlight',		
+							drop: function(event, ui) {												
+								var chip = $(ui.draggable);
+								var cell = $(this).attr('id');
+								var chip_id = $(chip).parent().attr('id');
+								var img_id = chip.attr('id');
+								// Checking that a cell has no chips (a cell can accept only one chip)
+								cellHasChip (cell, chip, img_id, chip_id);
+
 							}			
-						});					
-					/*}//else
-*/					$(f_cell_arr[index]).droppable('enable');
+					});		
+					
+
+					
 				});	 //each 
-			}		
+			},
+			drop: function(){
+				var f_cell_arr = cellsAroundShip (ship_id);	
+				$.each(f_cell_arr, function(index){	
+					console.log($(f_cell_arr[index]).attr('id'));
+					$(f_cell_arr[index]).droppable('enable');					
+				});
+			}
+		
 		});	
 	}
 	
@@ -219,7 +228,7 @@ $('td[id*=start]').droppable({
 			var chip_id = $(chip).parent().attr('id');
 			var img_id = chip.attr('id');
 			//permission to put Torpeda and Aircraft
-			//putTorpeda (img_id);
+			putTorpeda (img_id);
 			// Checking that a cell has no chips (a cell can accept only one chip)
 			cellHasChip (cell, chip, img_id, chip_id);
 		    $("#" + cell).droppable('enable');		    
@@ -231,6 +240,7 @@ $.each(chip_names,function(index,value){
 		accept: 'img[id*=img_' + value+ ']',
 		activeClass: 'highlight',
 		drop: function(event, ui) {			
+<<<<<<< HEAD
 		var chip_back = $(ui.draggable);
 		var cell = $(this).attr('id');
 		var chip_id = $(chip_back).parent().attr('id');
@@ -245,6 +255,28 @@ $.each(chip_names,function(index,value){
 			var a1 = parseInt(a)+1;
 				$('#chip_div_' + value + '+ div > p').text(a1);
 			});		
+=======
+			var chip_back = $(ui.draggable);
+			var cell = $(this).attr('id');
+			var chip_id = $(chip_back).parent().attr('id');
+			
+			var img_id = chip_back.attr('id');
+			cellHasChip (cell, chip_back, img_id, chip_id);
+			$("#" + cell).droppable('enable');
+			
+			if(chip_id != 'chip_div_' + value){
+				console.log(chip_id);
+				console.log('chip_div_' + value);
+				chip_back.fadeOut(200, function(){
+					$(this).appendTo('#chip_div_' + value).fadeIn();
+					var elem1= $(this).attr('id');
+					
+					var a = $('#chip_div_' + value + '+ div > p').text(); 		
+					var a1 = parseInt(a)+1;
+					$('#chip_div_' + value + '+ div > p').text(a1);
+				});
+			}
+>>>>>>> origin/master
 		}	
   	});
 });
