@@ -51,7 +51,7 @@ chip_pictures[14] ="resources/Sm.jpg" ;
 chip_pictures[15] ="resources/Aircraft.jpg" ;
 chip_pictures[16] ="resources/AtomBomb.jpg" ;
 
-var chip_amount = [1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0];//тест
+var chip_amount = [1, 3, 2, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0];//тест
 //var chip_amount = [2, 6, 6, 6, 1, 6, 6, 2, 6, 2, 1, 1, 6, 6, 1, 1, 1];//полный контеннт
 
 // Chip container creating
@@ -162,6 +162,7 @@ $(document).ready(function() {
 	// Checking that a cell has no chips (a cell can accept only one chip)
 	function cellHasChip (cell, chip, img_id, chip_id) {
 	  if ($("#" + cell).has('.ui-draggable').length) {
+		  alert($("#" + cell).has('.ui-draggable').length);
 	    	$("#" + cell).droppable('disable');
 	    }
 	    else {
@@ -234,8 +235,10 @@ $.each(chip_names,function(index,value){
 		var cell = $(this).attr('id');
 		var chip_id = $(chip_back).parent().attr('id');
 		var img_id = chip_back.attr('id');
+		if(chip_back==$(this)){alert("!11!")}else{alert("!22!")};////////////////////////////////////////////////////////////	
 		cellHasChip (cell, chip_back, img_id, chip_id);
 		$("#" + cell).droppable('enable');	
+
 		chip_back.fadeOut(200, function(){
 			$(this).appendTo('#chip_div_' + value).fadeIn();
 			var a = $('#chip_div_' + value + '+ div > p').text(); 		
