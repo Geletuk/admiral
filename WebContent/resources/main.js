@@ -31,25 +31,25 @@
 	 var element = document.getElementById("tbl");
 	 element.parentNode.removeChild(element);
  }
-var chip_names = ["VMB","Sugmarine","Tr","Tk","Krpl","Str","Asmin","R","Kraser","Lincor","Avia","Br","Torpeda","Mine","Sm","Aircraft","AtomBomb",]
+var chip_names = ["VMB","Submarine","Tr","Tk","Krpl","Str","Asmin","R","Kraser","Lincor","Avia","Br","Torpeda","Mine","Sm","Aircraft","AtomBomb",]
 var chip_pictures = new Array ();
-chip_pictures[0] ="resources/VMB.jpg" ;
-chip_pictures[1] ="resources/Sugmarine.jpg" ;
-chip_pictures[2] ="resources/Tr.jpg" ;
-chip_pictures[3] ="resources/Tk.jpg" ;
-chip_pictures[4] ="resources/Krpl.jpg" ;
-chip_pictures[5] ="resources/Str.jpg" ;
-chip_pictures[6] ="resources/Asmin.jpg" ;
-chip_pictures[7] ="resources/R.jpg" ;
-chip_pictures[8] ="resources/Kraser.jpg" ;
-chip_pictures[9] ="resources/Lincor.jpg" ;
-chip_pictures[10] ="resources/Avia.jpg" ;
-chip_pictures[11] ="resources/Br.jpg" ;
-chip_pictures[12] ="resources/Torpeda.jpg" ;
-chip_pictures[13] ="resources/Mine.jpg" ;
-chip_pictures[14] ="resources/Sm.jpg" ;
-chip_pictures[15] ="resources/Aircraft.jpg" ;
-chip_pictures[16] ="resources/AtomBomb.jpg" ;
+chip_pictures[0] ="resources/images/VMB.jpg" ;
+chip_pictures[1] ="resources/images/Submarine.jpg" ;
+chip_pictures[2] ="resources/images/Tr.jpg" ;
+chip_pictures[3] ="resources/images/Tk.jpg" ;
+chip_pictures[4] ="resources/images/Krpl.jpg" ;
+chip_pictures[5] ="resources/images/Str.jpg" ;
+chip_pictures[6] ="resources/images/Asmin.jpg" ;
+chip_pictures[7] ="resources/images/R.jpg" ;
+chip_pictures[8] ="resources/images/Kraser.jpg" ;
+chip_pictures[9] ="resources/images/Lincor.jpg" ;
+chip_pictures[10] ="resources/images/Avia.jpg" ;
+chip_pictures[11] ="resources/images/Br.jpg" ;
+chip_pictures[12] ="resources/images/Torpeda.jpg" ;
+chip_pictures[13] ="resources/images/Mine.jpg" ;
+chip_pictures[14] ="resources/images/Sm.jpg" ;
+chip_pictures[15] ="resources/images/Aircraft.jpg" ;
+chip_pictures[16] ="resources/images/AtomBomb.jpg" ;
 
 var chip_amount = [1, 3, 2, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0];//тест
 //var chip_amount = [2, 6, 6, 6, 1, 6, 6, 2, 6, 2, 1, 1, 6, 6, 1, 1, 1];//полный контеннт
@@ -60,10 +60,10 @@ function createChipContainer() {
 	var chip_div_id = '';
 	for (i = 0; i < chip_pictures.length; i++) {
 		chip_div_id = "chip_div_" + chip_names[i];
-		if (chip_pictures[i] == "resources/Torpeda.jpg"){
+		if (chip_pictures[i] == "resources/images/Torpeda.jpg"){
 			chip_img_id = "pihc_img_" + chip_names[i];
 		}
-		else if (chip_pictures[i] == "resources/Aircraft.jpg"){
+		else if (chip_pictures[i] == "resources/images/Aircraft.jpg"){
 			chip_img_id = "pihc_img_" + chip_names[i];
 		}
 		else {
@@ -128,11 +128,11 @@ $(document).ready(function() {
 	}
 	//permission to put Torpeda and Aircraft
 	function putTorpeda (img_id) {
-		if ( $('#' + img_id).attr('src') == 'resources/Tk.jpg' ) {				
+		if ( $('#' + img_id).attr('src') == 'resources/images/Tk.jpg' ) {				
 			$('img[id*=img_Torpeda]').removeClass('disabled').fadeTo(0, 1);
 			draggableEffect('img[id*=img_Torpeda]');					
 		};
-		if ( $('#' + img_id).attr('src') == 'resources/Avia.jpg' ) {				
+		if ( $('#' + img_id).attr('src') == 'resources/images/Avia.jpg' ) {				
 			$('img[id*=img_Aircraft]').removeClass('disabled').fadeTo(0, 1);
 			draggableEffect('img[id*=img_Aircraft]');
 		};
