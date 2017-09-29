@@ -16,15 +16,17 @@
 <script type="text/javascript" src="resources/game.js"></script>
 </head>
 <body>
-	Введенное имя: ${userJSP.name};
+
+	<div class="container">
+		<div class="row" id="row_container">
+			<div class="col-md-2">
+				Введенное имя: ${userJSP.name};
 	<br /> Введенный пароль: ${userJSP.password};
 	<br /> Массив: ${userJSP.chip_amount};
 	<br /> test regina
-	<div class="container">
-		<div class="row" id="row_container">
-			<div class="col-md-1"></div>
+			</div>
 
-			<div class="col-md-8">
+			<div class="col-md-7">
 				<div id="main_tbl"></div>
 			</div>
 
