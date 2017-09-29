@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="resources/style.css">
 <script type="text/javascript" src="resources/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="resources/jquery-ui.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/constants.js"></script>
+<script type="text/javascript" src="resources/createPlayPage.js"></script>
 <script type="text/javascript" src="resources/main.js"></script>
 <script type="text/javascript" src="resources/ajaxJson.js"></script>
 <script type="text/javascript" src="resources/game.js"></script>
