@@ -1,7 +1,5 @@
 package com.servlet;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,7 +48,7 @@ public class admController {
     }
 	@RequestMapping(value = "newJson", method = RequestMethod.GET)
 	public @ResponseBody String newJson(@RequestParam(value = "json", required = false) String json){
-		String JSON="9!1!Asmin_10!2!St";
+	//	String JSON="9!1!Asmin_10!2!St";
 		System.out.println("получил json"+json);
 		parseJson(json);
 		System.out.println("отдалл json   "+respons(pol));
