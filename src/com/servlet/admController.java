@@ -27,7 +27,7 @@ public class admController {
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("userJSP", Igrok);
-        modelAndView.setViewName("NewJsp");
+        modelAndView.setViewName("loginPage");
     
         return modelAndView;
     }
@@ -41,7 +41,7 @@ public class admController {
         ModelAndView modelAndView = new ModelAndView();
         Igrok=user;
         //имя представления, куда нужно будет перейти
-        modelAndView.setViewName("secondPage");
+        modelAndView.setViewName("playPage");
  
         //записываем в атрибут userJSP (используется на странице *.jsp объект user
         modelAndView.addObject("userJSP", user);
