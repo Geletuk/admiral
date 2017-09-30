@@ -54,6 +54,7 @@ function createChipContainer() {
 	$('img[id*=img_Torpeda], img[id*=img_Aircraft]').addClass('disabled').fadeTo(0, 0.5);
 }
 
+var shipsMap = new Map();
 
 function createShipRow(shipName, amount, div_chips_container)
 {
@@ -66,8 +67,9 @@ function createShipRow(shipName, amount, div_chips_container)
 		
 	for (ship_num = 0; ship_num < amount; ship_num++)
 	{
-		createShip(shipName, ship_num, div_col4);
-	}		
+		var ship = new Ship(shipName, ship_num, div_col4);
+		shipsMap.set(ship.id, ship);
+	}	
 	var div_col3 = div_row.appendChild(document.createElement('div'));
 	div_col3.setAttribute("class", "col-md-3");
 	
@@ -80,20 +82,4 @@ function createShipRow(shipName, amount, div_chips_container)
 	
 	var elem_name = div_col5.appendChild(document.createElement('p'));
 	elem_name.innerHTML = shipName;	
-}
-
-function createShip(shipName, ship_num, div_contaner)
-{
-	if (shipName == "Torpeda" || shipName == "Aircraft")
-	{
-		chip_img_id = "pihc_img_" + shipName;
-	} else {
-		chip_img_id = "chip_img_" + shipName;
-	}
-	var div_elem_img = div_contaner.appendChild(document.createElement('img'));		
-	div_elem_img.setAttribute("id", chip_img_id + ship_num);
-	div_elem_img.setAttribute("src", "resources/images/" + shipName + ".jpg");	
-	div_elem_img.setAttribute("height", "20");
-	div_elem_img.setAttribute("width", "40");
-	div_elem_img.style.zIndex = ship_num;
 }

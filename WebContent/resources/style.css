@@ -21,9 +21,10 @@ div[id*=chip_div_] {
 	height: 1000px;
 }
 
-img[id*=chip_img_] {
+img {
 	position: absolute;
-	/* Относительное позиционирование */
+	height: 20px;
+	width: 40px;
 }
 
 .mt-50 {
@@ -33,3 +34,5 @@ img[id*=chip_img_] {
 ul {
 	list-style-type: none;
 }
+
+img
