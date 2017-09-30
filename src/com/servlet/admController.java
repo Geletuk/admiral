@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.admiral.User;
 import com.admiral.fiska;
-
+import com.admiral.pole;
 
  
  
@@ -17,6 +17,7 @@ import com.admiral.fiska;
 //@Scope("session")
 //@RequestMapping({"/"})
 public class admController {
+	pole pole;
 	fiska[][] pol=new fiska[14][14];
 	User Igrok=new User();
     /*First method on start application*/
@@ -26,10 +27,10 @@ public class admController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("userJSP", Igrok);
         modelAndView.setViewName("loginPage");
-    
+        System.out.println("PRINT");
+       // pole.Print();
         return modelAndView;
     }
- 
     /*как только на index.jsp подтвердится форма
     <spring:form method="post"  modelAttribute="userJSP" action="check-user">,
     то попадем вот сюда
@@ -40,17 +41,24 @@ public class admController {
         Igrok=user;
         //имя представления, куда нужно будет перейти
         modelAndView.setViewName("playPage");
- 
+        pole=new pole(111, Igrok.getName());
+        System.out.println("DATE"+pole.getDate());
+        pole.Print();
         //записываем в атрибут userJSP (используется на странице *.jsp объект user
         modelAndView.addObject("userJSP", user);
- 
+        System.out.println("Igrok-"+ user.getName());
         return modelAndView; //после уйдем на представление, указанное чуть выше, если оно будет найдено.
     }
 	@RequestMapping(value = "newJson", method = RequestMethod.GET)
 	public @ResponseBody String newJson(@RequestParam(value = "json", required = false) String json){
 	//	String JSON="9!1!Asmin_10!2!St";
 		System.out.println("получил json"+json);
+	//	pole=new pole(111, Igrok.getName());
+
 		parseJson(json);
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		pole.Print();
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		System.out.println("отдалл json   "+respons(pol));
 	//	System.out.println("отдалл json"+JSON);
 		printArray(pol);
@@ -76,7 +84,7 @@ public class admController {
 		//	buf=buf.substring(0, buf.length()-1);
 			String[]t=buf.split("_");
 			pol[(Math.abs((Integer.parseInt(t[0]))-13))][Math.abs(((Integer.parseInt(t[1]))-13))]=new fiska(t[2],Igrok.getName(),Integer.parseInt(t[2]),false);
-			
+			pole.setPole(new fiska(t[2],Igrok.getName(),Integer.parseInt(t[2]),false), (Math.abs((Integer.parseInt(t[0]))-13)), Math.abs(((Integer.parseInt(t[1]))-13)));
 		}
 		
 	}

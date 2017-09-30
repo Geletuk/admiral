@@ -1,20 +1,74 @@
 package com.admiral;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
-public class pole {
-	fiska [][] pole = new fiska [14][14];
 
-	public pole() {
+public class pole {
+	int id;
+	LocalDateTime date;
+	String player1;
+	String player2;
+	fiska [][] pole ;
+
+	
+	public pole(int id, String player1) {
+		this.id = id;
+		this.player1 = player1;
+		this.player2 = "";
+		this.date= LocalDateTime.now();
+		this.pole = new fiska [14][14];
+	}
+
+	/*public pole() {
 		for (int i = 0; i < 14; i++)
 			for (int j = 0; j < 14; j++) {
 				pole[i][j] = new fiska();
 			}
+	}*/
+
+	public LocalDateTime getDate() {
+		return date;
 	}
 
-	@Override
-	public String toString() {
-		return "pole [pole1=" + Arrays.toString(pole) + "]";
+	public void setDate(LocalDateTime date) {
+		this.date = date;
 	}
-	
+
+	public void Print() {
+		for (int i = 0; i < pole.length; i++) {
+			for (int j = 0; j < pole[i].length; j++) {
+				System.out.print(pole[i][j] + "\t");
+			}
+			System.out.println();
+		}
+	}
+
+	public fiska[][] getPole() {
+		return pole;
+	}
+
+	public void setPole(fiska fiska, int x, int y) {
+		this.pole[x][y] = fiska;
+	}
+	public int getId() {
+		return id;
+	}
+
+	public String getPlayer1() {
+		return player1;
+	}
+
+	public void setPlayer1(String player1) {
+		this.player1 = player1;
+	}
+
+	public String getPlayer2() {
+		return player2;
+	}
+
+	public void setPlayer2(String player2) {
+		this.player2 = player2;
+	}
+
 }
