@@ -64,10 +64,9 @@ function createShipRow(shipName, amount, div_chips_container)
 	div_col4.setAttribute("class", "col-md-4");
 	div_col4.setAttribute("id", chip_div_id);  
 		
-	for (ship_num = 0; j < amount; j++)
+	for (ship_num = 0; ship_num < amount; ship_num++)
 	{
 		createShip(shipName, ship_num, div_col4);
-
 	}		
 	var div_col3 = div_row.appendChild(document.createElement('div'));
 	div_col3.setAttribute("class", "col-md-3");
