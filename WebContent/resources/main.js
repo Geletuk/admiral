@@ -11,6 +11,7 @@ $(document).ready(function()
 			var cell = $(this).attr('id');
 			var parent_id = $(chip).parent().attr('id');
 			var img_id = chip.attr('id');
+			//alert("cell "+cell+",parent_id "+parent_id+",img_id "+img_id);
 			chip.fadeOut(200, function(){
 				$("#" + img_id).appendTo('#' + cell).fadeIn();
 				if(parent_id.includes("chip_div"))
@@ -23,7 +24,7 @@ $(document).ready(function()
 			});
 		    $("#" + cell).droppable('disable');
 		    $("#" + parent_id).droppable('enable');
-			activateTorpedaAndAircraft(img_id);
+			activateTorpedaAndAircraft(img_id, cell);
 		}
 	});
 	
@@ -52,22 +53,24 @@ $(document).ready(function()
 		});
 	});
 
+	
+	//Creating json
+	$('#play_but').click(function (){
+		var json='';
+		$('td').each(function(index){			
+			if ( $( this ).is(':parent') ) { 	
+				var cell_id_obj = $(this).attr('id');
+				var img_id_obj = $(this).children().attr('id');					
+				var b = img_id_obj.length-1;				
+				var a = img_id_obj.substring(9, b);	
+				var img_n = chip_names.indexOf(a);
+				json=json +cell_id_obj + '_' + img_n + '/';	
+				console.log(cell_id_obj+'=cell_id_obj, ' + img_id_obj + '=img_id_obj, ' + a + '=a, ' + img_n + '=img_n');
+			}						
+		});  
+		alert(json);
+		mjson (json);
+	});
 }); //Ready finish
 
-//Creating json
-$('#play_but').click(function (){
-	var json='';
-	$('td').each(function(index){			
-		if ( $( this ).is(':parent') ) { 	
-			var cell_id_obj = $(this).attr('id');
-			var img_id_obj = $(this).children().attr('id');					
-			var b = img_id_obj.length-1;				
-			var a = img_id_obj.substring(9, b);	
-			var img_n = chip_names.indexOf(a);
-			json=json +cell_id_obj + '_' + img_n + '/';	
-			console.log(cell_id_obj+'=cell_id_obj, ' + img_id_obj + '=img_id_obj, ' + a + '=a, ' + img_n + '=img_n');
-		}						
-	});  
-	alert(json);
-	mjson (json);
-});
+
