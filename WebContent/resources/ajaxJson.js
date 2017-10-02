@@ -65,4 +65,21 @@ function mjson(json){
 			}
 		});	
     }
- 
+function mjsonTest(json){
+	var data ="json="+json;
+	$.ajax({
+		url : "newJsonTest",
+		data : data,
+		type : "GET",
+		success : function(JSON) {
+			alert(JSON);
+			removeTable ();
+			createTable();	
+			var aj=answerJson(JSON);
+			chipArrange(aj);
+			displayRulesBlock();
+			chipTooltip();
+			play();	
+		}
+	});	
+}

@@ -5,15 +5,13 @@ import java.util.Arrays;
 
 
 public class pole {
-	int id;
 	LocalDateTime date;
 	String player1;
 	String player2;
 	fiska [][] pole ;
 
 	
-	public pole(int id, String player1) {
-		this.id = id;
+	public pole(String player1) {
 		this.player1 = player1;
 		this.player2 = "";
 		this.date= LocalDateTime.now();
@@ -36,6 +34,9 @@ public class pole {
 	}
 
 	public void Print() {
+		System.out.println(player1);
+		System.out.println(player2);
+		System.out.println(date);
 		for (int i = 0; i < pole.length; i++) {
 			for (int j = 0; j < pole[i].length; j++) {
 				System.out.print(pole[i][j] + "\t");
@@ -50,9 +51,6 @@ public class pole {
 
 	public void setPole(fiska fiska, int x, int y) {
 		this.pole[x][y] = fiska;
-	}
-	public int getId() {
-		return id;
 	}
 
 	public String getPlayer1() {

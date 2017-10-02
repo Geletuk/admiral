@@ -22,10 +22,12 @@
 	<div class="container">
 		<div class="row" id="row_container">
 			<div class="col-md-2">
-				Введенное имя: ${userJSP.name};
+		   Введенное имя: ${userJSP.name};
 	<br /> Введенный пароль: ${userJSP.password};
 	<br /> Массив: ${userJSP.chip_amount};
-	<br /> test regina
+<%-- 	<br /> Pole id: ${poleJSP.id},player1: ${poleJSP.player1},player2: ${poleJSP.player2},date: ${poleJSP.date} --%>
+	<br /> Map: ${mapJSP}
+
 			</div>
 
 			<div class="col-md-7">
@@ -37,6 +39,10 @@
 			<div align="center">
 				<button type="button" id="play_but"
 					class="btn btn-success disabled mt-50">P l a y</button>
+			</div>
+			<div align="center">
+				<button type="button" id="play_but_test"
+					class="btn btn-success mt-50">P l a y</button>
 			</div>
 		</div>
 		<!-- row -->

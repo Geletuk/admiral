@@ -71,6 +71,22 @@ $(document).ready(function()
 		alert(json);
 		mjson (json);
 	});
+	$('#play_but_test').click(function (){
+		var json='';
+		$('td').each(function(index){			
+			if ( $( this ).is(':parent') ) { 	
+				var cell_id_obj = $(this).attr('id');
+				var img_id_obj = $(this).children().attr('id');					
+				var b = img_id_obj.length-1;				
+				var a = img_id_obj.substring(9, b);	
+				var img_n = chip_names.indexOf(a);
+				json=json +cell_id_obj + '_' + img_n + '/';	
+				console.log(cell_id_obj+'=cell_id_obj, ' + img_id_obj + '=img_id_obj, ' + a + '=a, ' + img_n + '=img_n');
+			}						
+		});  
+		alert(json);
+		mjsonTest (json);
+	});
 }); //Ready finish
 
 
